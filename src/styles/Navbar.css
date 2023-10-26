@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Collegiate+One&display=swap');
+
+.navbar , .logo__keyboard{
+    display: flex;
+    font-size: 40px;
+    align-items: center;
+}
+
+.logo__keyboard {
+    gap: 10px;
+}
+
+.navbar {
+    justify-content: space-between;
+    width: 60%;
+}
+
+.logo {
+    font-family: 'Alumni Sans Collegiate One', sans-serif;
+}
+
+img{
+    transform: scale(1.5);
+}
