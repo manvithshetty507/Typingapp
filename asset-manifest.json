@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Typingapp/static/css/main.69888d2e.css",
+    "main.js": "/Typingapp/static/js/main.f90b98dd.js",
+    "index.html": "/Typingapp/index.html",
+    "main.69888d2e.css.map": "/Typingapp/static/css/main.69888d2e.css.map",
+    "main.f90b98dd.js.map": "/Typingapp/static/js/main.f90b98dd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.69888d2e.css",
+    "static/js/main.f90b98dd.js"
+  ]
+}
