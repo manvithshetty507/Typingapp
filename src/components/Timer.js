@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Timer.css';
 
-function Timer() {
-  const [countdown, setCountdown] = useState(0);
+function Timer({onCountdownZero, setTime}) {
+  const [countdown, setCountdown] = useState(300);
   const [selectedTime, setSelectedTime] = useState();
 
   useEffect(() => {
@@ -12,8 +12,10 @@ function Timer() {
       timeInterval = setInterval(() => {
         setCountdown(countdown - 1);
       }, 1000);
+      setTime(selectedTime);
     } else {
       clearInterval(timeInterval);
+      onCountdownZero();
     }
 
     return () => {

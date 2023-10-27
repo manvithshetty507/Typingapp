@@ -34,10 +34,10 @@ function ColorTags() {
         <div className='theme__switch'>
         <label htmlFor="mytheme"></label>
             <select id="mytheme" onChange={handleColorChange}>
-                <option value="black">Darken-black</option>
-                <option value="grey">Colored-Grey</option>
+                <option value="grey">Darken-black</option>
+                <option value="darkGrey">Colored-Grey</option>
                 <option value="pink">Colored-Pink</option>
-                <option value="green">Colored-Green</option>
+                <option value="darkGreen">Colored-Green</option>
                 <option value="blue">Colored-Blue</option>
                 <option value="white">Colored-White</option>
                 <option value="purple">Colored-Purple</option>

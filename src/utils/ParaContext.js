@@ -7,7 +7,7 @@ export function usePara() {
 }
 
 export function ParaProvider({ children }) {
-  const [paragraph, setPara] = useState("I am become death destroyer of the world");
+  const [paragraph, setPara] = useState("The brown fox jumped over the quick lazy dog in the rustic meadow under the bright sunshine.");
 
   const updatePara = (newPara) => {
     setPara(newPara);

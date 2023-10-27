@@ -3,13 +3,13 @@ import '../styles/Words.css';
 import { usePara } from '../utils/ParaContext';
 
 
-function Words() {
+function Words({setCorrectWords}) {
   const {paragraph} = usePara();
 
   const [para, setPara] = useState("");
   const [userInput, setUserInput] = useState("");
-  const [wordsArray, setWordsArray] = useState(para.split(" "));
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [wordsArray, setWordsArray] = useState(para.split(' '));
+  const [currentIndex, setCurrentIndex] = useState();
   const [letterClasses, setLetterClasses] = useState([]);
   const [dummy, setDummy] = useState(wordsArray[currentIndex]);
 
@@ -18,8 +18,8 @@ function Words() {
   }, [paragraph]);
 
   useEffect(() => {
-    setWordsArray(para.split(" "));
     setDummy(wordsArray[currentIndex]);
+    setWordsArray(paragraph.split(' '));
     setLetterClasses([]);
     setCurrentIndex(0);
   }, [para]);
@@ -34,16 +34,26 @@ function Words() {
     }
   }, [wordsArray, letterClasses]);
 
+  console.log(wordsArray);
+
   const handleChange = (event) => {
     if (event.target.value.endsWith(' ')) {
       setUserInput('');
       setDummy(wordsArray[currentIndex + 1]);
       setCurrentIndex(currentIndex + 1);
+
+      // Remove leading and trailing spaces from userInput and compare it to the current word
+      const wordy = userInput.substring();
+      if (wordy.trim() === wordsArray[currentIndex]) {
+        setCorrectWords((prev) => prev+1);
+      }
+
     } else {
       setUserInput(event.target.value);
     }
     handleColor(event);
   };
+
 
   const handleColor = () => {
     if (currentIndex >= wordsArray.length) {
@@ -87,7 +97,7 @@ function Words() {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         // Reset the state when the "Escape" key is pressed
-        setPara(para);
+        setPara(paragraph);
         setWordsArray(para.split(" "));
         setCurrentIndex(0);
         setLetterClasses([]);
@@ -124,7 +134,9 @@ function Words() {
             position: 'absolute',
             top: 0,
             left: 0,
-            opacity: 0, // Hide the input field
+            opacity: 0,// Hide the input field
+            width:'60%',
+            height:'30%',
           }}
       />
     </div>
