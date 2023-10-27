@@ -1,11 +1,15 @@
 import React from 'react'
-import '../styles/ColorTag.css'
+import '../styles/ColorTag.css';
+import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram } from 'react-icons/fa';
 
 function ColorTags() {
   return (
     <div className='foot'>
         <div className='social__tags'>
-
+          <FaGithub className='tag'/>
+          <FaLinkedin className='tag'/>
+          <FaEnvelope className='tag'/>
+          <FaInstagram className='tag'/>
         </div>
         <div className='theme__switch'>
         <label htmlFor="mytheme"></label>

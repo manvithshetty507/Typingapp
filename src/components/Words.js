@@ -7,20 +7,21 @@ function Words() {
   const [wordsArray, setWordsArray] = useState(para.split(" "));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [letterClasses, setLetterClasses] = useState([]);
+  const [dummy, setDummy] = useState(wordsArray[currentIndex]);
 
   useEffect(() => {
-    if (wordsArray.length > 0) {
-      // Initialize letterClasses for the entire paragraph
+    if (wordsArray.length > 0 && letterClasses.length === 0) {
       const initialLetterClasses = wordsArray.map((myWord) =>
         myWord.split('').map(() => 'default')
       );
       setLetterClasses(initialLetterClasses);
     }
-  }, [wordsArray]);
+  }, [wordsArray, letterClasses]);
 
   const handleChange = (event) => {
     if (event.target.value.endsWith(' ')) {
       setUserInput('');
+      setDummy(wordsArray[currentIndex + 1]);
       setCurrentIndex(currentIndex + 1);
     } else {
       setUserInput(event.target.value);
@@ -46,22 +47,25 @@ function Words() {
         updatedLetterClasses[currentIndex][i] = 'incorrect';
       }
     }
-    // if (userWord.length > actualWord.length) {
-    //     const newActualWord = actualWord + userWord.substring(actualWord.length);
-    //     const newWordsArray = [...wordsArray]; // Clone the wordsArray
-    //     newWordsArray[currentIndex] = newActualWord; // Update the specific index
-    //     setWordsArray(newWordsArray); // Update the state with the new array
-
-    //     let k = actualWord.length;
-    //     while(k < userWord.length) {
-    //         updatedLetterClasses[currentIndex][k] = 'incorrect';
-    //         k++;
-    //     }
-    // }
     setLetterClasses(updatedLetterClasses);
-  };
 
-  console.log(wordsArray);
+    if (userWord.length > dummy.length-1) {
+      const newActualWord = dummy + userWord.substring(dummy.length);
+      const newWordsArray = [...wordsArray];
+      newWordsArray[currentIndex] = newActualWord;
+  
+      const updatedLetterClasses = [...letterClasses];
+  
+      for (let i = dummy.length; i < userWord.length; i++) {
+          updatedLetterClasses[currentIndex][i] = 'incorrect';
+      }
+  
+      setWordsArray(newWordsArray);
+      setLetterClasses(updatedLetterClasses);
+    }
+    
+  };
+  console.log(letterClasses)
 
   return (
     <div className='container' style={{ position: 'relative' ,width: '60%'}}>
