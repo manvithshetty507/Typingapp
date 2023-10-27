@@ -4,17 +4,20 @@ import Timer from './components/Timer';
 import Words from './components/Words';
 import Feats from './components/Feats'
 import ColorTags from './components/ColorTags';
+import { ParaProvider } from './utils/ParaContext';
 
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Timer />
-      <Words />
-      <Feats />
-      <ColorTags />
-    </div>
+    <ParaProvider>
+      <div className="App">
+        <Navbar />
+        <Timer />
+        <Words />
+        <Feats />
+        <ColorTags />
+      </div>
+    </ParaProvider>
   );
 }
 

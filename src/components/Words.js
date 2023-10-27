@@ -1,13 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Words.css';
+import { usePara } from '../utils/ParaContext';
+
 
 function Words() {
-  const [para, setPara] = useState("I am become death destroyer of the world");
+  const {paragraph} = usePara();
+
+  const [para, setPara] = useState("");
   const [userInput, setUserInput] = useState("");
   const [wordsArray, setWordsArray] = useState(para.split(" "));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [letterClasses, setLetterClasses] = useState([]);
   const [dummy, setDummy] = useState(wordsArray[currentIndex]);
+
+  useEffect(() => {
+    setPara(paragraph);
+  }, [paragraph]);
+
+  useEffect(() => {
+    setWordsArray(para.split(" "));
+    setDummy(wordsArray[currentIndex]);
+    setLetterClasses([]);
+    setCurrentIndex(0);
+  }, [para]);
+  
 
   useEffect(() => {
     if (wordsArray.length > 0 && letterClasses.length === 0) {
@@ -71,7 +87,7 @@ function Words() {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         // Reset the state when the "Escape" key is pressed
-        setPara("I am become death destroyer of the world");
+        setPara(para);
         setWordsArray(para.split(" "));
         setCurrentIndex(0);
         setLetterClasses([]);

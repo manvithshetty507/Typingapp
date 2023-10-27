@@ -1,8 +1,28 @@
-import React from 'react'
+import React ,{useState} from 'react'
 import '../styles/ColorTag.css';
 import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram } from 'react-icons/fa';
 
 function ColorTags() {
+  const [selectedColor, setSelectedColor] = useState('');
+
+  function handleColorChange(event) {
+    const selectedValue = event.target.value;
+    setSelectedColor(selectedValue);
+    document.body.style.backgroundColor = selectedValue;
+    
+    switch(selectedValue) {
+      case 'black':
+        document.body.style.color = "yellow";
+        break;
+      case 'green':
+        document.body.style.color = "black";
+      case 'white':
+        document.body.style.color = "pink";
+      default :
+        document.body.style.color = "black";
+        break;
+    }
+  }
   return (
     <div className='foot'>
         <div className='social__tags'>
@@ -13,7 +33,7 @@ function ColorTags() {
         </div>
         <div className='theme__switch'>
         <label htmlFor="mytheme"></label>
-            <select id="mytheme">
+            <select id="mytheme" onChange={handleColorChange}>
                 <option value="black">Darken-black</option>
                 <option value="grey">Colored-Grey</option>
                 <option value="pink">Colored-Pink</option>
