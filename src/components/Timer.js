@@ -3,7 +3,7 @@ import '../styles/Timer.css';
 
 function Timer() {
   const [countdown, setCountdown] = useState(0);
-  const [selectedTime, setSelectedTime] = useState(15);
+  const [selectedTime, setSelectedTime] = useState();
 
   useEffect(() => {
     let timeInterval;

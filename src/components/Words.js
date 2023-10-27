@@ -65,7 +65,26 @@ function Words() {
     }
     
   };
-  console.log(letterClasses)
+
+  //handling reset
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        // Reset the state when the "Escape" key is pressed
+        setPara("I am become death destroyer of the world");
+        setWordsArray(para.split(" "));
+        setCurrentIndex(0);
+        setLetterClasses([]);
+        setDummy(wordsArray[currentIndex]);
+        setUserInput('');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [para, wordsArray, currentIndex, letterClasses, dummy]);
+
 
   return (
     <div className='container' style={{ position: 'relative' ,width: '60%'}}>
